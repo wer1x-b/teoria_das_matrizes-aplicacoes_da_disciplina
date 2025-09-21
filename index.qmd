@@ -1,0 +1,69 @@
+---
+title: "Teoria das matrizes e aplicações - Aplicações da disciplina"
+author: "Wericky Barbosa de Melo - 20210044249"
+format: 
+  pdf:
+    toc: true
+    number-sections: true
+lang: pt-BR
+geometry: "a4paper, margin=1in"
+---
+
+# Introdução
+
+Este documento apresenta o resumo do conteúdo "Aula de Modelos Lineares - Unidade III", publicado na plataforma RPubs. conforme proposto em atividade.
+
+# A Formulação Matricial como Pilar da Modelagem
+
+O ponto de partida de praticamente toda a teoria de modelos lineares é a sua representação elegante e compacta na forma matricial:
+
+$$
+y = X\beta + \epsilon
+$$
+
+Esta única equação geral, é capaz de encapsular uma vasta gama de modelos estatísticos. Cada componente tem um significado preciso:
+
+-   **$y$**: Um vetor-coluna de dimensão $(n \times 1)$ contendo as $n$ observações da variável resposta que desejamos explicar ou prever.
+-   **$X$**: A matriz de planejamento (ou matriz de delineamento), de dimensão $(n \times p)$, que constitui a estrutura do modelo. Suas colunas representam as $p$ variáveis preditoras (ou independentes).
+-   **$\beta$**: Um vetor-coluna de dimensão $(p \times 1)$ contendo os parâmetros (coeficientes) desconhecidos do modelo, os quais quantificam a relação entre as variáveis preditoras e a variável resposta.
+-   **$\epsilon$**: Um vetor-coluna de dimensão $(n \times 1)$ que representa os erros aleatórios, ou seja, a variabilidade em $y$ que não é capturada pelo modelo linear.
+
+A força desta abordagem reside em sua escalabilidade e generalidade. Modelos distintos como regressão linear simples, regressão múltipla e Análise de Variância. são todos representados por esta mesma estrutura, diferindo apenas na construção da matriz $X$.
+
+## Estimação de Parâmetros e o Sistema de Equações Normais
+
+A aplicação da Teoria das Matrizes se intensifica na etapa de estimação dos parâmetros em $\beta$. Utilizando o Método de Mínimos Quadrados Ordinários, o objetivo é encontrar o vetor de estimativas $\hat{\beta}$ que minimiza a soma dos quadrados dos resíduos. Em notação matricial, isso equivale a minimizar a norma quadrática do vetor de erro, $\epsilon'\epsilon$:
+
+$$
+S(\beta) = (y - X\beta)'(y - X\beta)
+$$
+
+A solução para este problema de otimização é encontrada derivando $S(\beta)$ em relação a $\beta$ e igualando a zero. Este procedimento resulta no sistema de equações normais:
+
+$$
+(X'X)\beta = X'y
+$$
+
+Esta é a equação central da estimação em modelos lineares. Para encontrar o vetor de parâmetros $\hat{\beta}$, é necessário resolver este sistema. Se a matriz $(X'X)$ for invertível, a solução única é obtida pré-multiplicando ambos os lados por sua inversa:
+
+$$
+\hat{\beta} = (X'X)^{-1}X'y
+$$
+
+No material é destacado que a invertibilidade de $(X'X)$ é uma condição crucial. Em casos de multicolinearidade (que é a alta correlação entre as variáveis preditoras), esta matriz pode se tornar singular ou quase, impossibilitando o cálculo de uma inversa estável. Nestas situações, a Teoria das Matrizes oferece soluções avançadas, como o uso da inversa generalizada de Moore-Penrose, que permite encontrar uma solução que melhor se ajuste mesmo quando a solução única não existe.
+
+## Aplicação em Análise de Variância (ANOVA)
+
+O material também demonstra de forma eficaz que a ANOVA é fundamentalmente, um caso particular de um modelo linear. A técnica, usada para comparar médias de diferentes grupos, é modelada através de uma matriz de planejamento $X$ composta por variáveis indicadoras.
+
+Os cálculos para a decomposição da variabilidade total dos dados, que é a essência da ANOVA, são expressos de forma concisa através de operações matriciais. são fundamentais:
+
+$$
+H = X(X'X)^{-1}X'
+$$
+
+Esta matriz, quando aplicada ao vetor de observações $y$, gera o vetor de valores previstos $\hat{y} = Hy$. A partir dela, as somas de quadrados podem ser calculadas como formas quadráticas, ilustrando o poder da álgebra linear para particionar a variância dos dados.
+
+# Conclusão
+
+O resumo do conteúdo "Aula de Modelos Lineares - Unidade III" revela que a Teoria das Matrizes é muito mais do que uma mera conveniência notacional. Ela fornece a linguagem, a estrutura conceitual e o motor computacional que unificam e operacionalizam a teoria dos modelos lineares. Desde a representação compacta do modelo até a solução de sistemas de equações para estimação de parâmetros e a decomposição da variância na ANOVA, as matrizes são a ferramenta indispensável que conecta a teoria estatística abstrata à prática da análise de dados.
